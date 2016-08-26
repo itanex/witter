@@ -1,7 +1,9 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var app = express();
 app.listen(8000);
+app.use(bodyParser.urlencoded({ extended: false }))
 
 var tweets = [];
 
@@ -10,7 +12,7 @@ app.get('/', function(req, res){
 });
 
 app.post('/send', function(req, res){
-    if(req.body && red.body.tweet) {
+    if(req.body && req.body.tweet) {
         tweets.push(req.body.tweet);
         res.send({status: "ok", message: "Tweet Received"});
     } else {
